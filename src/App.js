@@ -1,12 +1,14 @@
 import './index.css';
 import { useState, useEffect } from 'react';
+import { FaQuestion } from 'react-icons/fa';
 
-import Header from './components/Header';
 import ToDoForm from './components/ToDoForm';
 import ToDoList from './components/ToDoList';
 import Stats from './components/Stats';
+import { Link } from 'react-router-dom';
 
 function App() {
+  const aboutPageQueryString = 13;
   const [todoList, setTodoList] = useState(() => {
     const saved = localStorage.getItem("todolist");
     const initialValue = JSON.parse(saved);
@@ -36,7 +38,6 @@ function App() {
 
   return (
     <div>
-      <Header />
       <ToDoForm
         addTodo={setTodoList}
         itemToEdit={itemToEdit}
@@ -49,7 +50,10 @@ function App() {
         deleteTodo={deleteTodo}
         editTodo={setItemToEdit}
       />
-    </div>
+      <Link to={`/about/${aboutPageQueryString}`}>
+        <FaQuestion />
+      </Link>
+    </div >
   );
 }
 
